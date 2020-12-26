@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>相对定位不占位</title>
+</head>
+<body>
+<style>
+    .abs{
+        position:absolute;
+    }
+    .r{
+        position: relative;
+        left: 150px;
+        top:-15px;
+    }
+</style>
+    <p>相对定位的文字3 在原来的位置的基础上，向右移动150个像素，但是又不占用原来的坑。</p>
+    <p>结合相对定位和绝对定位实现这个效果</p>
+    <p>正常的文字1</p> <p>正常的文字2</p>
+    <div class="abs">
+        <p class="r">相对定位的文字3(不占坑)</p>
+    </div>
+    <p>正常的文字4</p>
+    <p>正常的文字5</p>
+</body>
+</html>
