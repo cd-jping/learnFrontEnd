@@ -4,37 +4,151 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSS综合练习1</title>
+    <style>
+        body{
+            margin: 0;
+            color: white;
+        }
+        .info{
+            /* 临时调高padding 方便调试 15px */
+            padding: 15px; 
+            overflow: hidden;
+            margin: auto;
+            width: 800px;
+            background-color: rgb(65, 65, 65);
+        }
+        .menu{
+            background-color: rgb(17, 18, 26);
+            width:26%;
+            /* margin-left: 20px; */
+            float: left;
+        }
+        input{
+            margin-left: 7px;
+        }
+        .menu label{
+            display: inline-block;
+            margin-right: 7px;
+            margin-bottom: 8px;
+            width:32px;
+            font-size: 12px;
+            
+        }
+        h4{
+            text-align: center;
+            font-size: 14px;
+            margin: 16px 0;
+        }
+        
+        h5{
+            margin: 16px ;
+            padding-bottom: 12px;
+            font-size: 12px;
+            border-bottom: rgb(43, 52, 65) dashed 1px;
+            color:rgb(255, 145, 0);
+        }
+        .hero{
+            background-color: rgb(17, 18, 26);
+            width: 72%;
+            /* margin-right: 20px; */
+            float: right;
+        }
+        .hero td{
+            font-size: 12px;
+            color:rgb(255, 145, 0);
+            text-align: center;
+        }
+        .hero img{
+            width: 56px;
+            
+            height: 56px;
+            margin:6px;
+            border: gray solid 1px;
+        }
+    </style>
 </head>
+
 <body>
     <div class="info">
-        <div>
             <div class="menu">
                 <h4>英雄资料</h4>
-                 <input type="checkbox" id="tank"><label for="tank">坦克</label>
-
+                <input type="checkbox" id="tank">
+                <label for="tank">坦克</label>
+                <input type="checkbox" id="fashi">
+                <label for="fashi">法师</label>
+                <input type="checkbox" id="cike">
+                <label for="cike">刺客</label>
+                <input type="checkbox" id="fuzhu">
+                <label for="fuzhu">辅助</label>
+                <input type="checkbox" id="xinshou">
+                <label for="xinshou">新手</label>
+                <input type="checkbox" id="jinzhan">
+                <label for="jinzhan">近战</label>
+                <input type="checkbox" id="tank1">
+                <label for="tank1">坦克</label>
+                <input type="checkbox" id="fashi1">
+                <label for="fashi1">法师</label>
+                <input type="checkbox" id="cike1">
+                <label for="cike1">刺客</label>
+                <input type="checkbox" id="fuzhu1">
+                <label for="fuzhu1">辅助</label>
+                <input type="checkbox" id="xinshou1">
+                <label for="xinshou1">新手</label>
+                <input type="checkbox" id="jinzhan1">
+                <label for="jinzhan1">近战</label>
                 
                 <div>
-                    <span></span>
-                    <a href=""></a>
-                    <a href=""></a>
-                    <a href=""></a>
-                    <a href=""></a>
+                    <h5>英雄价格:</h5>
+                    <input type="checkbox" id="tank">
+                    <label for="tank">6400</label>
+                   <input type="checkbox" id="Lorem1">
+                   <label for="lorem1">2300</label>
+                   <input type="checkbox" id="Lorem1">
+                   <label for="lorem1">3420</label>
+                   <input type="checkbox" id="Lorem1">
+                   <label for="lorem1">5230</label>
+                   <input type="checkbox" id="Lorem1">
+                   <label for="lorem1">450</label>
                 </div>
+                <div>
+                <h4>物品资料</h4>
+                <input type="checkbox" id="tank">
+                 <label for="tank">坦克</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
             </div>
             <div>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
             </div>
-            <div>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
-                <a href=""></a>
-            </div>
+            
+                <h4>符文资料</h4>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
+                <input type="checkbox" id="Lorem1">
+                <label for="lorem1">lorem1</label>
         </div>
-        <table class="hero" border="1">
+        <table class="hero">
             <tbody>
                 <tr>
                     <td><img src="learnCSS7/images/0.jpg" alt=""></td>
@@ -46,10 +160,10 @@
                     <td><img src="learnCSS7/images/6.jpg" alt=""></td>
                 </tr>
                 <tr>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
                     <td>Lorem, ipsum dolor.</td>
-                    <td>Lorem, ipsum dolor.</td>
-                    <td>Lorem, ipsum dolor.</td>
-                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
                     <td>Lorem, ipsum dolor.</td>
                     <td>Lorem, ipsum dolor.</td>
                     <td>Lorem, ipsum dolor.</td>
@@ -64,37 +178,67 @@
                     <td><img src="learnCSS7/images/14.jpg" alt=""></td>
                 </tr>
                 <tr>
-                    <td>
-                        <img src="" alt="" srcset="">learnCSS7/images/0.png
-                        <img src="" alt="" srcset="">learnCSS7/images/1.png
-                        <img src="" alt="" srcset="">learnCSS7/images/2.png
-                        <img src="" alt="" srcset="">learnCSS7/images/3.png
-                        <img src="" alt="" srcset="">learnCSS7/images/4.png
-                        <img src="" alt="" srcset="">learnCSS7/images/5.png
-                        <img src="" alt="" srcset="">learnCSS7/images/6.png
-                    </td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
                 </tr>
                 <tr>
-                    <td>
-                        <img src="" alt="" srcset="">learnCSS7/images/0.png
-                        <img src="" alt="" srcset="">learnCSS7/images/1.png
-                        <img src="" alt="" srcset="">learnCSS7/images/2.png
-                        <img src="" alt="" srcset="">learnCSS7/images/3.png
-                        <img src="" alt="" srcset="">learnCSS7/images/4.png
-                        <img src="" alt="" srcset="">learnCSS7/images/5.png
-                        <img src="" alt="" srcset="">learnCSS7/images/6.png
-                    </td>
+                    <td><img src="learnCSS7/images/15.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/16.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/17.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/18.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/19.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/20.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/21.jpg" alt=""></td>
                 </tr>
                 <tr>
-                    <td>
-                        <img src="" alt="" srcset="">learnCSS7/images/0.png
-                        <img src="" alt="" srcset="">learnCSS7/images/1.png
-                        <img src="" alt="" srcset="">learnCSS7/images/2.png
-                        <img src="" alt="" srcset="">learnCSS7/images/3.png
-                        <img src="" alt="" srcset="">learnCSS7/images/4.png
-                        <img src="" alt="" srcset="">learnCSS7/images/5.png
-                        <img src="" alt="" srcset="">learnCSS7/images/6.png
-                    </td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                </tr>
+                <tr>
+                    <td><img src="learnCSS7/images/22.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/23.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/24.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/25.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/26.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/27.jpg" alt=""></td>
+                    <td><img src="learnCSS7/images/28.jpg" alt=""></td>
+                </tr>
+                <tr>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                </tr>
+                <tr>
+                   <td><img src="learnCSS7/images/29.jpg" alt=""></td>
+                   <td><img src="learnCSS7/images/30.jpg" alt=""></td>
+                   <td><img src="learnCSS7/images/31.jpg" alt=""></td>
+                   <td><img src="learnCSS7/images/32.jpg" alt=""></td>
+                   <td><img src="learnCSS7/images/33.jpg" alt=""></td>
+                   <td><img src="learnCSS7/images/34.jpg" alt=""></td>
+                   <td><img src="learnCSS7/images/35.jpg" alt=""></td>
+                </tr>
+                <tr>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
+                    <td>Lorem<br>ipsum dolor.</td>
+                    <td>Lorem, ipsum dolor.</td>
                 </tr>
             </tbody>
         </table>
