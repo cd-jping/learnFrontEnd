@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS综合练习3</title>
+    <style>
+        form{
+            border: steelblue solid 1px;
+        }
+        .tips{
+            color: red;
+            font-size: 12px;
+        }
+        h5{
+            color:rgb(69, 93, 204);
+            margin: 4px;
+            font-size: 14px;
+            background-color: rgb(235, 244, 255);
+        }
+        .part .tips{
+            margin-left: 4px;
+
+        }
+       
+        .item{
+            margin: 0 4px 4px 4px;
+            padding-bottom: 4px;
+        display:flex;
+        /* width: 800px; */
+        border-bottom: rgb(235, 244, 255) solid 2px;
+        
+        }
+        .label{
+            text-align: right;
+            font-size: 12px;
+            line-height: 28px;
+        }
+        .star:before{
+            content: "* ";
+            color: red;
+
+        }
+        .label,.input{
+            flex: 1;
+        }
+        .input input{
+            height: 18px;
+            width: 90%;
+            margin-bottom: 8px;
+            background-color: whitesmoke;
+        }
+        
+        
+        .text{
+            padding: 10px;
+            background-color: whitesmoke;
+            flex: 3;
+            
+        } 
+        a{
+            font-size: 12px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>  
+    <span class="tips">请注意：带有“*”的项目必须填写</span>
+    <form action="submit">
+      <div class="part">
+          <h5>请填写您的用户名：</h5>
+          <div class="item">
+
+            <div class="label"><label class="star" for="">通行证用户名：</label>
+            
+            </div>
+            <div class="input"><input type="text" placeholder="请输入用户名"><br><a href="">查看用户名是否被占用</a></div>
+            <div class="text">用户名由a～z的英文字母(不区分大小写)、0-9的数字、点
+                减号或下划线组成，长度为3-18个字符，只能以数字或者字母开头和结尾，例如kyzy_001.
+            </div>
+          </div>
+      </div>
+      <div class="part">
+          
+        <h5>请填写您的用户名：</h5>
+        <span class="tips">请注意：带有“*”的项目必须填写</span>
+        <div class="item">
+            <div class="label"><label  class="star" for="">shuzi</label>
+            <br>
+            <label for="">通行证用户名：</label>
+            <br>
+            </div>
+            <div class="input"><input type="password"><br><input type="text"><br></div>
+            <div class="text">用户名由a～z的英文字母(不区分大小写)、0-9的数字、点
+                减号或下划线组成，长度为3-18个字符，只能以数字或者字母开头和结尾，例如kyzy_001.
+            </div>
+            
+        </div>
+        <div class="item">
+            <div class="label"><label  class="star" for="">通行证用户名：</label>
+            <br>
+            <label for="">通行证用户名：</label>
+            <br>
+            </div>
+            <div class="input"><input type="text"><br><input type="text"><br></div>
+            <div class="text">用户名由a～z的英文字母(不区分大小写)、0-9的数字、点
+                减号或下划线组成，长度为3-18个字符，只能以数字或者字母开头和结尾，例如kyzy_001.
+            </div>
+            
+        </div>
+        
+    </div>
+      
+       
+
+       
+    </form>
+</body>
+</html>
