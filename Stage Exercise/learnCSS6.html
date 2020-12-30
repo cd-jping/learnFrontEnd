@@ -8,23 +8,16 @@
 <style>
     body{
         margin: 0 20px;
-         font-size: 13px;
-         /* font-family:Georgia, 'Times New Roman', Times, serif; */
-        /* width: 600px;
-        margin: auto; */
-        
+        font-size: 13px; 
     }
     nav{
          
         line-height: 36px; 
-        /* vertical-align: middle; */
         border-bottom: lightgray solid 1px;
-        margin-bottom: 15px;
     }
     nav img{
         vertical-align:middle;
         margin-right: 6px;
-        /* margin:3px 6px; */
         margin-bottom: 2px;
     }
     .settings{
@@ -34,14 +27,12 @@
     }
     .topic{
         overflow:hidden;
-        /* background-color: #eee; */
-        /* height: 30px; */
+        margin-top: 15px;
         border-bottom: lightgray solid 1px;
         padding-bottom: 24px;
+        
     }
     aside{
-        /* display: inline-block; */
-         
         width: 10%;
         float: left;
     }
@@ -86,15 +77,13 @@
         content:"...";
         color: black;
     }
-    .interaction a{
-        display: inline-block;
+    .interaction a{ 
         color:lightgray;
         margin-right: 24px;
     }
     .interaction img{
-float:none;
-margin-right: 6px;
-
+        float:none;
+        margin-right: 6px;
     }
 </style>
 <body>
@@ -102,6 +91,7 @@ margin-right: 6px;
         <span><img src="learnCSS6/images/1.png" alt=""><b>最新动态</b></span>
         <a href="" class="settings"><img src="learnCSS6/images/2.png" alt="">设置</a>
     </nav> 
+    <!-- 第一条话题 -->
     <section class="topic">
         <aside> 
             <img class="userpic" src="learnCSS6/images/4.png" alt="">
@@ -122,10 +112,26 @@ margin-right: 6px;
             
         </article>
     </section>
-   
-    
-     
-     
-     
+    <!-- 话题 多条时 -->
+    <section class="topic">
+        <aside> 
+            <img class="userpic" src="learnCSS6/images/4.png" alt="">
+            <div><span>6551</span></div>
+       </aside>
+        <article>
+            <div class="tags"><span>热门回答，来自 机械 <a href="">关注话题</a></span><img class="close" src="learnCSS6/images/3.png" alt=""></div>
+            <h3 class="title"><a href="">人类史上令人叹为观止的极限精度制造成果有哪些？</a></h3>
+            <p><b>Vincent Fu,</b> Materials Science, PhD</p>
+            <img src="learnCSS6/images/6.png" alt="">
+            <p>说到精度，就不得不提在材料学中最重要的一个方面：表征。要项研究一种材料性能，握在手里把玩时远远不够的，就算你拿出放大镜离近了看，也只能看到表面的一些坑坑洼洼，而为了知晓一种材料的纤维结构，科学家至少要下到纳米级（放大千倍），如果要获得更深<a class="more" href="">
+                   显示全部
+                </a>
+            </p>
+            <div class="interaction">
+               <a><img src="learnCSS6/images/7.png">关注问题</a><a><img src="learnCSS6/images/8.png">867条评论</a><a><img src="learnCSS6/images/9.png">作者保留权利</a>
+            </div>
+            
+        </article>
+    </section>
 </body>
 </html>
