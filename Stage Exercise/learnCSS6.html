@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS综合练习1</title>
+</head>
+<style>
+    nav{
+        height: 32px;
+        border-bottom: lightgray solid 1px;
+    }
+    .settings{
+        float: right;
+    }
+
+    a {
+        text-decoration: none;
+    }
+     
+    .more:before{
+        content:"...";
+        color: black;
+    }
+</style>
+<body>
+    <nav>
+        <span class="title"><img src="learnCSS6/images/1.png" alt=""> 最新动态</span>
+        <a href="" class="settings"><img src="learnCSS6/images/2.png" alt=""> 设置</a>
+    </nav>
+     <side>
+         <img src="learnCSS6/images/4.png" alt="">
+         <span>6551</span>
+     </side>
+     <article>
+         <div><span>热门回答，来自 机械 <a href="">关注话题</a></span><img src="learnCSS6/images/3.png" alt=""></div>
+         <h3><a href="">人类史上令人叹为观止的极限精度制造成果有哪些？</a></h3>
+         <p>Vincent Fu, Materials Science, PhD</p>
+         <img src="learnCSS6/images/6.png" alt="">
+         <p>说到精度，就不得不提在材料学中最重要的一个方面：表征。要项研究一种材料性能，握在手里把玩时远远不够的，就算你拿出放大镜离近了看，也只能看到表面的一些坑坑洼洼，而为了知晓一种材料的纤维结构，科学家至少要下到纳米级（放大千倍），如果要获得更深<a class="more" href="">
+                显示全部
+             </a>
+         </p>
+     </article>
+</body>
+</html>
