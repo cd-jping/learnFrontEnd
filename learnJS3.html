@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=, initial-scale=1.0">
+    <title>JS阶段性练习3</title>
+    <script>
+        function todayweek(){
+            var day=new Date().getDay();
+            // document.write(day);
+            var today;
+            if(day == 0){
+                today = "星期天";
+            }else if(day == 1){
+                today = "星期一";
+            }else if(day == 2){
+                today = "星期二";
+            }else if(day == 3){
+                today = "星期三";
+            }else if(day == 4){
+                today = "星期四";
+            }else if(day == 5){
+                today = "星期五";
+            }else if(day == 6){
+                today = "星期六";
+            }
+            document.write("今天是"+today);
+        }
+        todayweek();
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

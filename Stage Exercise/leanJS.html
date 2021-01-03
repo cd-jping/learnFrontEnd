@@ -6,22 +6,39 @@
     <title>JS阶段性练习1-加法计算器</title>
     <style>
         input{
-            width: 60px;
+            width:8ch;
+            line-height: 48px;
+            font-size: 36px;
+            /* border-radius: 4px; */
+            
         } 
+        input[type=button]{
+            padding: 1px 2px;
+            font-size: 34px;
+        }
+        span{
+            font-size: 36px;
+        }
+        #result{
+            width: 12ch;
+            outline: none;
+        }
     </style>
     <script>
         function getSum(){
-            var reslut = document.getElementById("number1")+document.getElementById("number2")
-            return reslut;
+            var number1 = document.getElementById("number1").value;
+            var number2 = document.getElementById("number2").value;
+            var sum = Number(number1)+Number(number2);
+            document.getElementById("result").value=sum;
         }
     </script>
 </head>
 <body>
-    <input type="text" name="additive" id="number1">
+    <input type="text"  id="number1">
     <span>+</span>
-    <input type="text" name="number_added" id="number2">
+    <input type="text"  id="number2">
     <span>=</span>
-    <input type="text" name="sum" id="reslut" readonly=true>
-    <input type="button" name="" id="" value="求和" onclick="getSum()">
+    <input type="text" id="result" readonly=true>
+    <input type="button" value="求和" onclick="getSum()">
 </body>
 </html>
