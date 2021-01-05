@@ -3,6 +3,7 @@ This Repository For my learn Front End Record！我的前端学习记录！
 
 学习目标 来自 https://how2j.cn?p=179231
 
+https://biaoyansu.com
 
 **学习笔记**
 ES6是JavaScript的规范标准。JS就是具体实现。
