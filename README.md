@@ -1,21 +1,22 @@
-# learnFrontEnd
-This Repository For my learn Front End Record！我的前端学习记录！
+# 学习前端
 
-学习目标 来自 https://how2j.cn?p=179231
+这个项目是用来存放我学习前端的内容和记录体会的过程！！里面有可能会存放各个地方学习目标素材。
 
-https://biaoyansu.com
+**学习目标**
+How2j  <https://how2j.cn?p=179231>
+表严肃  <https://biaoyansu.com/i/65930215260131>
 
-**学习笔记**
-ES6     是JavaScript的规范标准。JS就是具体实现。
-CSS     为静态实现HTML页面效果。和实现一些极为简单的响应变化。
-JS      可以更加复杂的直接对html对象操作做成反应变化。不仅限于页面效果。
-DOM     操作是利用js 对html中的元素视作对象来操作。
-jquery  是为了更加简便快速实现一些原生JS的方法。最有亮点的是jQ的ajax方法实现比原生方法简单的多。
-nodejs  是一个JavaScript开发环境？
-ajax    是异步请求方法。 
+## 学习笔记
 
-**学习路径**
-- HTML 
+- **myBlog**
+复刻biaoyansu的实战练习，里面使用了大量的div标签 通过class命名。好处是为了兼顾兼容性，能够适配更低版本的浏览器，并且统一使用类名作为选择器，更方便直观来快速写CSS样式。
+
+- **MyBlog-html5**
+重写blog实战练习，摒弃了全部使用div的方式构建页面结构，尽量使用了h5的标准 使用语义化标签方式实现页面结构。好处是为了让页面维护稍微好一点，对搜索引擎来说能更快更好对网站做出内容处理和收录。对于CSS布局来说，标签和类名混合使用。
+
+## 学习路径
+
+- HTML
 - CSS
 - javascript ES6
 - jQuery.js
@@ -24,6 +25,7 @@ ajax    是异步请求方法。
 - axios
 - UI框架
 
-**练习计划**
+## 练习计划
+
 - 做一个web形式简历
-- 做一个记账功能页面（原生JS实现，VUE实现）
+- 做一个记账应用（尝试VUE实现）
