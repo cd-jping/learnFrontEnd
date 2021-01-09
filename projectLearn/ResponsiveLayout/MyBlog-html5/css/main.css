@@ -4,6 +4,7 @@
 body{
     background: #454545;
     line-height: 1.7;
+    font-family: -apple-system;
 }
 
 a, body{
@@ -77,4 +78,8 @@ article .status{
 article h1{
     color: #454545;
     font-size: 30px;
+}
+#menu-checkbox,
+#menu-toggle{
+    display: none;
 }
