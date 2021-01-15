@@ -5,14 +5,12 @@
 **学习目标**
 How2j  <https://how2j.cn?p=179231>
 表严肃  <https://biaoyansu.com/i/65930215260131>
+MDN    <https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/JavaScript_basics>
 
-## 学习笔记
+## 学习体会
 
-- **myBlog**
-复刻biaoyansu的实战练习，里面使用了大量的div标签 通过class命名。好处是为了兼顾兼容性，能够适配更低版本的浏览器，并且统一使用类名作为选择器，更方便直观来快速写CSS样式。
-
-- **MyBlog-html5**
-重写blog实战练习，摒弃了全部使用div的方式构建页面结构，尽量使用了h5的标准 使用语义化标签方式实现页面结构。好处是为了让页面维护稍微好一点，对搜索引擎来说能更快更好对网站做出内容处理和收录。对于CSS布局来说，标签和类名混合使用。
+- 21-01-15
+第一次开始写学习体会，前面学习了HTML、CSS，现在开始学习JS，有一点感觉就是 还是看MDN的文档比较好。看了Jquery 总想试试，但是很多写法不理解，还得补习ES6.
 
 ## 学习路径
 
