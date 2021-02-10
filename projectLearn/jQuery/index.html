@@ -18,30 +18,22 @@
             <form id="signup">
                 <div class="input-wrap">
                     <label>昵称</label>
-                    <input data-rule='maxlength:16|minlength:2' type="text"
-                    name="name"
-                    class="input-control">
+                    <input data-rule='maxlength:16|minlength:2' type="text" name="name" class="input-control">
                     <div id="name-input-error" class="input-error">长度至少为2～16个字符</div>
                 </div>
                 <div class="input-wrap">
                     <label>年龄</label>
-                    <input data-rule='max:18' type="text"
-                    name="age"
-                    class="input-control">
+                    <input data-rule='min:18' type="text" name="age" class="input-control">
                     <div id="age-input-error" class="input-error">未成年不接受注册</div>
                 </div>
                 <div class="input-wrap">
                     <label>用户名</label>
-                    <input data-rule='pattern:"^[a-z0-9]*$"|minlength:6|maxlength:18' type="text"
-                    name="username"
-                    class="input-control">
+                    <input data-rule='pattern:"^[a-z0-9]*$"|minlength:6|maxlength:18' type="text" name="username" class="input-control">
                     <div id="username-input-error" class="input-error">必须是小写字母或数字，长度为6～18位</div>
                 </div>
                 <div class="input-wrap">
                     <label>自我介绍</label>
-                    <input data-rule='required:false|maxlength:200' type="text"
-                    name="intro"
-                    class="input-control">
+                    <input data-rule='required:false|maxlength:200' type="text" name="intro" class="input-control">
                     <div id="intro-input-error" class="input-error">200字以内</div>
                 </div>
                 <button type="submit">注册</button>
