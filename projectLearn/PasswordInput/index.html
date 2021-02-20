@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>密码框输入验证练习</title>
+    <link href="https://cdn.bootcdn.net/ajax/libs/normalize/8.0.1/normalize.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/mian.css">
+</head>
+
+<body>
+    
+    <div class="wrap wrap-sm">
+        <header>
+           <h1>密码设置</h1>
+           <p>这是一个密码输入框的验证练习，输入的内容符合要求后则按钮可以点击</p>
+        </header>
+        
+        <form class="form">
+            <section>
+                <label for="">输入密码</label>
+                
+                <input type="password">
+                <strong>密码要求</strong>
+                <div class="error-group">
+                    <ul>
+                        <li>
+                            <span>包含至少8个字符</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <section>
+                <label for="">验证密码</label>
+                
+                <input type="password">
+                <div class="error-group">
+                    <ul>
+                        <li>
+                            <span>密码不一致</span>
+                        </li>
+                    </ul>
+                </div>
+            </section>
+            <input type="submit" value="继续">
+
+        </form>
+
+    </div>
+    <script src="https://cdn.bootcdn.net/ajax/libs/jquery/3.5.1/jquery.js"></script>
+    <script src="js/mian.js"></script>
+</body>
+
+</html>
