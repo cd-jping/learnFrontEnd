@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <title></title>
+  <style>
+   #bg{
+    width: 246px;
+    height: 400px;
+    background: black;
+   }
+   #screen{
+    position: relative;
+    top: 10px;
+    width: 95%;
+    height: 70px; 
+    color: white;
+    font-size: 50px;
+    text-align: right;
+    margin-left: 5px; 
+    /*background: wheat;*/
+   }
+   .btn,.btn_grey,.btn_orange{
+    width: 50px;
+    height: 50px;
+    margin: 3px;
+    border-radius: 25px;
+    text-align: center;
+    line-height: 45px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+   }
+   .btn_grey{
+    background: #7C7C7C;
+    color: black;
+   }
+   .btn_orange{
+    background: #FC8E39;
+   }
+   .btn{
+    background: #2C2C2C;
+   }
+   #zero{
+    width: 110px;
+   }
+  </style>
+ </head>
+ <body>
+  <div id="bg">
+   <div id="screen"></div>
+   <table id="keyboard">
+    <tr>
+     <td><div class="btn_grey" onclick="del()">del</div></td>
+     <td><div class="btn_grey" onclick="cfun()">C</div></td>
+     <td><div class="btn_grey" onclick="func('%')">%</div></td>
+     <td><div class="btn_orange" onclick="func('/')">/</div></td>
+    </tr>
+    <tr>
+     <td><div class="btn" onclick="func('7')">7</div></td>
+     <td><div class="btn" onclick="func('8')">8</div></td>
+     <td><div class="btn" onclick="func('9')">9</div></td>
+     <td><div class="btn_orange" onclick="func('*')">*</div></td>
+    </tr>
+    <tr>
+     <td><div class="btn" onclick="func('4')">4</div></td>
+     <td><div class="btn" onclick="func('5')">5</div></td>
+     <td><div class="btn" onclick="func('6')">6</div></td>
+     <<td><div class="btn_orange" onclick="func('-')">-</div></td>
+    </tr>
+    <tr>
+     <td><div class="btn" onclick="func('1')">1</div></td>
+     <td><div class="btn" onclick="func('2')">2</div></td>
+     <td><div class="btn" onclick="func('3')">3</div></td>
+     <td><div class="btn_orange" onclick="func('+')">+</div></td>
+    </tr>
+    <tr>
+     <td colspan="2"><div class="btn" id="zero" onclick="func('0')">0</div></td>
+     <td><div class="btn" onclick="func('.')">.</div></td>
+     <td><div class="btn_orange" onclick="result()">=</div></td>
+    </tr>
+   </table>
+  </div>
+  <script>
+   var scr=document.getElementById("screen");
+   function del(){
+    scr.innerHTML="";
+   }
+   function cfun(){
+    var str=scr.innerHTML;
+    scr.innerHTML=str.slice(0,str.length-1);
+   }
+   function func(num){
+    var str=scr.innerHTML;
+    scr.innerHTML=str+num;
+   }
+   function result(){
+    var str=scr.innerHTML;
+    scr.innerHTML=str==""?"":eval(str);
+   }
+  </script>
+ </body>
+</html>
