@@ -1,63 +1,67 @@
-const keyboardContainer = document.querySelector('.number-area','.operational-area');
- 
-const screen = document.querySelector('#screen').value
- 
+const keyboardContainer = document.querySelector('.keyboard');
 
-let previousNumber = '', currentNumber = '', sign = '';
+const screen = document.querySelector('.display').value
+let currentNumber = '', previousNumber = '';
+
 
 keyboardContainer.addEventListener('click', e => {
-    const type = e.target.dataset.type
-    console.log(type);
+    const type = e.target.dataset.type;
+    const text = e.target.textContent;
+    const operateId = e.target.id;
+    // console.log(e.target.nodeName)
+    if (e.target.nodeName === 'BUTTON') {
+        if (type === 'equal') {
+            console.log('计算结果', type)
+            //  calculator();
+        } else if (type === 'operate') {
+            console.log('操作符', operateId)
+            operate(operateId);
+        } else if (type === 'clear') {
+            console.log('清除按钮', type)
+            clear();
+        } else {
+            console.log('数字按钮', text)
+            pushNumber(text);
+        }
 
-    if (type === 'equal') {
-        calculate()
-    } else if (type === 'operate') {
-        const text = e.target.textContent
-        operate(text)
-    } else if (type === 'clear') {
-        clear()
-    } else {
-        const text = e.target.textContent
-        pushNumber(text)
+        updateDisplay();
     }
-    updateDisplay()
+
 })
 
 function updateDisplay() {
-    document.getElementById('screen').value = currentNumber;
-}
-
-function pushNumber(num) {
-    currentNumber = currentNumber + num;
-}
-
-function operate(text) {
-    if (currentNumber === '0') return
-    sign = text;
-    previousNumber = currentNumber;
-    // currentNumber = '';
-    switch (sign) {
       
-        case '+':
-            result = previous + current;
-            break;
-     }
+    document.querySelector('.display').value = currentNumber.toString();
+};
 
-
+function pushNumber(pressNumber) {
+     
+    currentNumber = currentNumber + pressNumber; 
+    console.log(currentNumber)
 }
-function calculate() {
-    let result = 0;
-    const previous = Number(previousNumber);
-    const current = Number(currentNumber);
-    switch (sign) {
-      
-        case '+':
-            result = previous + current;
-            break;
-        default:
-            return;
+
+function clear (){
+
+    currentNumber = '';
+}
+
+function operate(id){
+    if(!currentNumber===''||currentNumber==='0') return;
+    if(id==='percent'){
+        currentNumber = currentNumber/100;
+    }else if (id==='pos-and-neg'){
+        if(Number(currentNumber)>0){
+            currentNumber = '-'+currentNumber;
+        }else if(Number(currentNumber)<0||Number(currentNumber)==0){
+            currentNumber = currentNumber.replace('-','')
+        }
+        
 
     }
-    currentNumber = result;
-    sign = ''; 
-}
+
+function calculator(){
+    let result = 0;
+    const previousNum= Number(previousNumber);
+    const currentNum= Number(currentNumber);
+
+}}

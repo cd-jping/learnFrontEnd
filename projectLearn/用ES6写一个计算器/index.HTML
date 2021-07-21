@@ -11,27 +11,28 @@
 
 <body>
     <div class="main">
-        <div class="panel">
-            <input class="display" type="number" value="0">
+        <div class="calculator">
+            <input class="display" type="number" placeholder="0">
             <div class="keyboard">
-                <button id="zero">0</button><button id="dot">.</button>
-                <button id="one">1</button>
-                <button id="two">2</button>
-                <button id="three">3</button>
-                <button id="four">4</button>
-                <button id="five">5</button>
-                <button id="six">6</button>
+                <button class="operational" id="AC" data-type="clear">C</button>
+                <button class="operational" id="pos-and-neg" data-type="operate">+/- </button>
+                <button class="operational" id="percent" data-type="operate">%</button>
+                <button class="operational" id="divide" data-type="operate">÷</button>
                 <button id="seven">7</button>
                 <button id="eight">8</button>
                 <button id="nine">9</button>
-                <button data-type="clear" id="AC">C</button>
-                <button data-type="operate" id="pos-and-neg"><sup>+</sup>/-</button>
-                <button data-type="operate" id="percent">%</button>
-                <button data-type="equal" id="equal">=</button>
-                <button data-type="operate" id="add">+</button>
-                <button data-type="operate" id="subtract">-</button>
-                <button data-type="operate" id="multiply">×</button>
-                <button data-type="operate" id="divide">÷</button>
+                <button class="operational" id="multiply" data-type="operate">×</button>
+                <button id="four">4</button>
+                <button id="five">5</button>
+                <button id="six">6</button>
+                <button class="operational" id="add" data-type="operate">+</button>
+                <button id="one">1</button>
+                <button id="two">2</button>
+                <button id="three">3</button>
+                <button class="operational" id="subtract" data-type="operate">-</button>
+                <button id="zero">0</button>
+                <button id="dot">.</button>
+                <button class="operational" id="equal" data-type="equal">=</button>
             </div>
         </div>
     </div>
