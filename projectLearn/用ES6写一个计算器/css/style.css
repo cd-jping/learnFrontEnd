@@ -51,17 +51,6 @@ button:active{
     outline-style: none; 
 }
 
-.keyboard {
-    margin-right: 5px;
-    margin-left:5px ;
-    padding-bottom: 64px;
-    display: flex;
-
-    align-content: center;
-
-    
-}
-
 .keyboard .number-area {
     /* font-size: 0px; */
     display: flex;
