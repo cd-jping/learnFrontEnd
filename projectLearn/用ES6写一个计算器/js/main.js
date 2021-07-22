@@ -1,7 +1,7 @@
 const keyboardContainer = document.querySelector('.keyboard');
 
 const screen = document.querySelector('.display').value
-let currentNumber = '', previousNumber = '', sign = '';
+let displayNumber, currentNumber = '', previousNumber = '', sign = '';
 
 
 keyboardContainer.addEventListener('click', e => {
@@ -33,87 +33,187 @@ keyboardContainer.addEventListener('click', e => {
 })
 
 function updateDisplay() {
-    document.querySelector('.display').value = currentNumber;
+    document.querySelector('.display').value = displayNumber;
 };
 
 function pushNumber(pressNumber) {
 
     currentNumber = currentNumber + pressNumber;
-    console.log(currentNumber)
+    displayNumber = currentNumber;
+
 }
 
 function clear() {
 
+    displayNumber = '';
     currentNumber = '';
+    previousNumber = '';
 }
 
 function operate(id) {
-    if (!currentNumber === '' || currentNumber === '0') return;
+    // if (currentNumber === '' || currentNumber === '0') return;
+    // 判断有没有 当前值和历史值有的话 根据获取的sign 计算 ； 只有 历史值的话 或  继续 （ ）
+    if (previousNumber != '' && currentNumber != '') {
 
-    switch (id) {
+        calculator();
+        updateDisplay();
+    } else {
 
-        case 'percent':
-            currentNumber = currentNumber / 100;
-            updateDisplay();
-            console.log(currentNumber);
-            console.log(previousNumber);
-            break;
-        case 'pos-and-neg':
-            if (Number(currentNumber) > 0) {
-                currentNumber = '-' + currentNumber;
-            } else {
-                currentNumber = currentNumber.replace('-', '')
-            }
-            updateDisplay();
-            
-            console.log(currentNumber);
-            console.log(previousNumber);
-            break;
-        case 'add':
-            sign = 'add';
-            console.log(sign);
-            previousNumber = currentNumber;
-            currentNumber = '';
-            console.log(previousNumber);
-            console.log(currentNumber);
-            break;
-        case 'subtract':
-            sign = 'subtract';
-            break;
-        case 'multiply':
-            sign = 'multiply';
-            break;
-        case 'divide':
-            sign = 'divide';
-            break;
-        default:
-            break;
+        switch (id) {
 
+            case 'percent':
+                currentNumber = currentNumber / 100;
+                displayNumber = currentNumber;
+                updateDisplay();
+                console.log(currentNumber);
+                console.log(previousNumber);
+                break;
+            case 'pos-and-neg':
+                if (Number(currentNumber) > 0) {
+                    currentNumber = '-' + currentNumber;
+                } else {
+                    currentNumber = currentNumber.replace('-', '')
+                }
+                displayNumber = currentNumber;
+                updateDisplay();
+
+
+                break;
+            case 'add':
+                if (currentNumber !== '') {
+                    previousNumber = currentNumber;
+                    displayNumber = previousNumber;
+                    currentNumber = '';
+                } else if (currentNumber == '') {
+                    sign = 'add';
+                }
+                sign = 'add';
+                console.log(currentNumber);
+                console.log(previousNumber);
+                break;
+            case 'subtract':
+
+                if (currentNumber !== '') {
+                    previousNumber = currentNumber;
+                    displayNumber = currentNumber;
+                    currentNumber = '';
+                } else if (currentNumber === '') {
+
+                    sign = 'subtract';
+                }
+                sign = 'subtract';
+                console.log('curr' + currentNumber);
+                console.log('prev' + previousNumber);
+                break;
+            case 'multiply':
+                if (currentNumber !== '') {
+                    previousNumber = currentNumber;
+                    displayNumber = currentNumber;
+                    currentNumber = '';
+                } else if (currentNumber === '') {
+
+                    sign = 'multiply';
+                }
+                sign = 'multiply';
+
+                break;
+            case 'divide':
+                if (currentNumber !== '') {
+                    previousNumber = currentNumber;
+                    displayNumber = currentNumber;
+                    currentNumber = '';
+                } else if (currentNumber === '') {
+
+                    sign = 'divide';
+                }
+                sign = 'divide';
+                break;
+            default:
+                break;
+
+        }
     }
-
-    // if(id==='percent'){
-    //     currentNumber = currentNumber/100;
-    // }else if (id==='pos-and-neg'){
-    //     if(Number(currentNumber)>0){
-    //         currentNumber = '-'+currentNumber;
-    //     }else if(Number(currentNumber)<0||Number(currentNumber)==0){
-    //         currentNumber = currentNumber.replace('-','')
-    //     }
-    // }
-
+    currentNumber = '';
 
 }
 function calculator() {
+
     let result = 0;
-    const previousNum = Number(previousNumber);
-    const currentNum = Number(currentNumber);
+    if (sign == '') {
+        result = currentNumber;
+    }
+    console.log('上一次符号' + sign);
     switch (sign) {
         case 'add':
-            result = previousNum + currentNum;
+            if (currentNumber == '') {
+
+
+                currentNumber = Number(previousNumber);
+                result = Number(previousNumber) + Number(currentNumber);
+                previousNumber = result;
+
+
+            } else {
+                result = Number(previousNumber) + Number(currentNumber);
+
+
+                previousNumber = result;
+            }
+
+
             break;
+        case 'subtract':
+            // let temp = currentNumber;
+            console.log(currentNumber);
+            if (currentNumber === '') {
+                currentNumber = previousNumber;
+                console.log('zhixing wole ma???')
+                result = Number(previousNumber) - Number(currentNumber);
+                // previousNumber = result;
+            } else {
+                result = Number(previousNumber) - Number(currentNumber);
+                previousNumber = result;
+            }
+
+            break;
+        case 'multiply':
+            if (currentNumber == '') {
+
+
+                currentNumber = Number(previousNumber);
+                result = Number(previousNumber) * Number(currentNumber);
+                previousNumber = result;
+
+
+            } else {
+                result = Number(previousNumber) * Number(currentNumber);
+
+
+                previousNumber = result;
+            }
+            break;
+        case 'divide':
+            console.log(currentNumber);
+            if (currentNumber === '') {
+                currentNumber = previousNumber;
+                console.log('zhixing wole ma???')
+                result = Number(previousNumber) / Number(currentNumber);
+                // previousNumber = result;
+            } else {
+                result = Number(previousNumber) / Number(currentNumber);
+                previousNumber = result;
+            }
+
+            break;
+
+
     }
-    currentNumber = result;
-    // previousNumber = '';
-    // sign
+    displayNumber = result;
+
+    // previousNumber = result;
+    // currentNumber = '';
+    // displayNumber = currentNumber;
+    console.log(previousNumber, currentNumber, displayNumber)
+
 
 }
