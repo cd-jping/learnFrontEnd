@@ -1,10 +1,10 @@
 const keyboardContainer = document.querySelector('.keyboard');
 
 const screen = document.querySelector('.display').value
-let displayNumber, currentNumber = '', previousNumber = '', sign = '';
-
+let displayNumber = '', currentNumber = '', previousNumber = '', sign = '', prevType = '', btnId = '';
 
 keyboardContainer.addEventListener('click', e => {
+    console.log('pervType: ' + prevType);
     const type = e.target.dataset.type;
     const text = e.target.textContent;
     const operateId = e.target.id;
@@ -12,66 +12,90 @@ keyboardContainer.addEventListener('click', e => {
     if (e.target.nodeName === 'BUTTON') {
         if (type === 'operate') {
             console.log('操作符', operateId)
+            console.log('dangqianzhi', currentNumber);
+            if (prevType === 'equal') {
+
+                sign = '';
+                currentNumber = '';
+
+                console.log('执行了 sign')
+            }
             operate(operateId);
+
         } else {
             if (type === 'equal') {
                 console.log('计算结果', type)
-                    calculator();
-                    // previousNumber ='';
-                    // currentNumber = '';
+
+                calculator();
+                updateDisplay();
             } else if (type === 'clear') {
                 console.log('清除按钮', type)
                 clear();
+                updateDisplay();
             } else {
                 console.log('数字按钮', text)
+                if (prevType === 'equal') {
 
-                pushNumber(text);
+                    currentNumber = '';
+                    previousNumber = '';
+                    pushNumber(text);
+                    console.log('执行了 if')
+                } else {
+                    pushNumber(text);
+                    console.log('执行了 else')
+                }
             }
-            updateDisplay();
+
         }
 
 
     }
+    prevType = type;
+    btnId = operateId;
+    console.log('btnID:' + btnId);
 
 })
 
-function updateDisplay() {
 
+function updateDisplay() {
     document.querySelector('.display').value = displayNumber;
 };
 
 function pushNumber(pressNumber) {
-    
+
+    // 小数点输入 和 00000前缀 没有屏蔽
+    document.getElementById('AC').textContent = 'C';
     currentNumber = currentNumber + pressNumber;
     displayNumber = currentNumber;
-
+    updateDisplay();
 }
-
 function clear() {
-
-    displayNumber = '';
-    currentNumber = '';
-    previousNumber = '';
-    sign='';
+    console.log('before clean' + currentNumber);
+    if (currentNumber != '') {
+        displayNumber = '';
+        currentNumber = ''
+        console.log('only curr')
+        document.getElementById('AC').textContent = 'AC';
+    } else {
+        currentNumber = '';
+        pressNumber = '';
+        displayNumber = '';
+        sign = '';
+        console.log('all clean')
+    }
 }
 
-function Continuous() {
-    if (previousNumber != '' && currentNumber != '') {
-
+function Continuous() {//一个封装方法 是否直接运算？ 连续运算时，判断是否需要计算之前两个值。
+    if (previousNumber != '' && currentNumber != '') { //两个值不为‘’时候才运算。
         calculator();
         updateDisplay();
-        currentNumber = '';
     }
 }
 
 function operate(id) {
-    // if (currentNumber === '' || currentNumber === '0') return;
-    // 判断有没有 当前值和历史值有的话 根据获取的sign 计算 ； 只有 历史值的话 或  继续 （ ）
-
     switch (id) {
-
         case 'percent':
-            // Continuous();
+            currentNumber = displayNumber;
             currentNumber = currentNumber / 100;
             displayNumber = currentNumber;
             updateDisplay();
@@ -79,31 +103,20 @@ function operate(id) {
             console.log(previousNumber);
             break;
         case 'pos-and-neg':
-            // Continuous();
-            if (Number(currentNumber) > 0) {
-                currentNumber = '-' + currentNumber;
-            } else {
-                currentNumber = currentNumber.replace('-', '')
+            console.log('currentNumber');
+            if (currentNumber != '') {
+                currentNumber = -1 * Number(currentNumber);
+                displayNumber = currentNumber;
             }
-            displayNumber = currentNumber;
+            displayNumber = Number(currentNumber);
             updateDisplay();
-
-
             break;
         case 'add':
+            // if (sign == 'add') {  //连续运算时候，如果上一次的符号与这次相同直接相加，否则跳过运算；只改变符号。
             Continuous();
-            previousNumber = displayNumber;
-            // currentNumber = '';
-            
-            if (currentNumber !== '') {
-                previousNumber = currentNumber;
-                displayNumber = previousNumber;
+            if (displayNumber != '') {
+                previousNumber = displayNumber;
                 currentNumber = '';
-                console.log('if');
-                
-            } else if (currentNumber == '') {
-                sign = 'add';
-                console.log('else');
             }
             sign = 'add';
             console.log(currentNumber);
@@ -111,14 +124,9 @@ function operate(id) {
             break;
         case 'subtract':
             Continuous();
-            previousNumber = displayNumber;
-            if (currentNumber !== '') {
-                previousNumber = currentNumber;
-                displayNumber = currentNumber;
+            if (displayNumber != '') {
+                previousNumber = displayNumber;
                 currentNumber = '';
-            } else if (currentNumber === '') {
-
-                sign = 'subtract';
             }
             sign = 'subtract';
             console.log('curr' + currentNumber);
@@ -126,28 +134,18 @@ function operate(id) {
             break;
         case 'multiply':
             Continuous();
-            previousNumber = displayNumber;
-            if (currentNumber !== '') {
-                previousNumber = currentNumber;
-                displayNumber = currentNumber;
+            if (displayNumber != '') {
+                previousNumber = displayNumber;
                 currentNumber = '';
-            } else if (currentNumber === '') {
-
-                sign = 'multiply';
             }
             sign = 'multiply';
 
             break;
         case 'divide':
             Continuous();
-            previousNumber = displayNumber;
-            if (currentNumber !== '') {
-                previousNumber = currentNumber;
-                displayNumber = currentNumber;
+            if (displayNumber != '') {
+                previousNumber = displayNumber;
                 currentNumber = '';
-            } else if (currentNumber === '') {
-
-                sign = 'divide';
             }
             sign = 'divide';
             break;
@@ -158,12 +156,10 @@ function operate(id) {
 }
 
 function calculator() {
-
     let result = 0;
     if (sign == '') {
         result = currentNumber;
     }
-    console.log('符号' + sign);
     switch (sign) {
         case 'add':
             if (currentNumber == '') {
@@ -176,28 +172,21 @@ function calculator() {
             }
             break;
         case 'subtract':
-            // let temp = currentNumber;
             console.log(currentNumber);
             if (currentNumber === '') {
                 currentNumber = previousNumber;
                 console.log('zhixing wole ma???')
                 result = Number(previousNumber) - Number(currentNumber);
-                // previousNumber = result;
             } else {
                 result = Number(previousNumber) - Number(currentNumber);
                 previousNumber = result;
             }
-
             break;
         case 'multiply':
             if (currentNumber == '') {
-
-
                 currentNumber = Number(previousNumber);
                 result = Number(previousNumber) * Number(currentNumber);
                 previousNumber = result;
-
-
             } else {
                 result = Number(previousNumber) * Number(currentNumber);
                 //需要处理 精度问题 除法 需要处理0的结果
@@ -210,22 +199,16 @@ function calculator() {
                 currentNumber = previousNumber;
                 console.log('zhixing wole ma???')
                 result = Number(previousNumber) / Number(currentNumber);
-                // previousNumber = result;
             } else {
                 result = Number(previousNumber) / Number(currentNumber);
+
                 previousNumber = result;
+
+
             }
-
             break;
-
-
     }
     displayNumber = result;
-
     previousNumber = result;
-    // currentNumber ='';
-    // displayNumber = currentNumber;
     console.log(previousNumber, currentNumber, displayNumber)
-
-
 }

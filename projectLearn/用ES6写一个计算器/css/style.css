@@ -43,9 +43,13 @@ body {
     outline-style: none;
     text-align: right;
     font-size: 80px;
-    font-weight:300;
+    font-weight: 300;
     font-family: system-ui;
     lighting-color: tomato;
+}
+
+.display::placeholder {
+    color: white;
 }
 
 .keyboard {
