@@ -1,5 +1,4 @@
 const keyboardContainer = document.querySelector('.keyboard');
-
 const screen = document.querySelector('.display').value
 let displayNumber = '', currentNumber = '', previousNumber = '', sign = '', prevType = '', btnId = '';
 
