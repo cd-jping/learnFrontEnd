@@ -98,15 +98,19 @@ function pressNumber(btn_number) {
     // 每次输入数字 即将产生当前值，这时候clean键会为「C」；再次按下clean键会变为「AC」
     document.getElementById('clean').textContent = 'C';
     //开头不能为「0」
-    if (btn_number === '0' && currentNumber.length == 0 || btn_number === '0' && currentNumber === '-') {  //开头不能为0
+    if (btn_number === '0' && currentNumber.length == 0 || btn_number === '0' && currentNumber === '-0') {  //开头不能为0
         btn_number = ''; //清空得到的「0」
     }
 
+    // || btn_number === '0' && currentNumber === '-'
+
     // 如果开头是「.」,处理成「0.」 
-    if (btn_number === '.' && currentNumber.length == 0) {
+    if (btn_number === '.' && currentNumber.length == 0 ) {
         currentNumber = '0.'
         // 「0.」不给直接传给input；把数字给placeholder
         document.querySelector('#display').placeholder = String(currentNumber);
+    }else if(btn_number==='.' && currentNumber==='-'){
+        currentNumber='-0.'
     }
 
     // 只能输入一个小数点；如果当前数字有「.」则屏蔽后面输入的「.」
@@ -114,20 +118,24 @@ function pressNumber(btn_number) {
         btn_number = '';
     }
 
+    if (currentNumber === '-0' && btn_number !== '.') {
+        currentNumber = '-';
+    }
+
     // 把数字给当前值
-    
+
     currentNumber = currentNumber + btn_number;
 
     // 如果 当前值结尾为「xxx.」
     if (currentNumber.charAt(currentNumber.length - 1) == '.') {
         document.querySelector('#display').placeholder = String(currentNumber);
         displayNumber = ''; //  让placeholder显示出来。
-    } else if(currentNumber=='-') {
-        document.querySelector('#display').placeholder = String(currentNumber+0);
-        displayNumber = ''; //  让placeholder显示出来。
-    }else{
+        console.log('running');
+        updateDisplay();
+    } else {
         displayNumber = currentNumber;
         document.querySelector('#display').placeholder = '0';
+
         updateDisplay();
     }
 
@@ -145,12 +153,13 @@ function operational(btn_id) {
             if (currentNumber === '') {
                 document.querySelector('#display').placeholder = '-0';
                 currentNumber = '-';
+                console.log(currentNumber);
             } else if (currentNumber === '-') {
                 document.querySelector('#display').placeholder = '0';
                 currentNumber = '';
             } else {
                 currentNumber = -1 * Number(currentNumber);
-                displayNumber = currentNumber;
+                console.log('curr Type:' + currentNumber.typeof);
             }
             console.log('pressed:' + btn_id);
             break;
