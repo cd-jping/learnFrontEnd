@@ -34,7 +34,7 @@ body {
     box-shadow: 0px 12px 24px lightgray;
 }
 
-.display {
+.calculator #display {
     width: 100%;
     height: 110px;
     margin-top: 130px;
@@ -88,7 +88,7 @@ body {
     grid-column: 1/3;
 }
 
-.keyboard #pos-and-neg, .keyboard #AC, .keyboard #percent {
+.keyboard #posi-and-nega, .keyboard #clean, .keyboard #percent {
     background-color: #A4A5A6;
     color: black;
 }
