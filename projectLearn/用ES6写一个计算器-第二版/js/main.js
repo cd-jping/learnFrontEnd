@@ -166,6 +166,8 @@ function operational(btn_id) {
             break;
         case 'percent':
             currentNumber = currentNumber / 100;
+            //处理精度
+            // ？？？？
             displayNumber = currentNumber;
             console.log('pressed:' + btn_id);
             break;
