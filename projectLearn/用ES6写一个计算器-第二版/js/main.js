@@ -105,12 +105,12 @@ function pressNumber(btn_number) {
     // || btn_number === '0' && currentNumber === '-'
 
     // 如果开头是「.」,处理成「0.」 
-    if (btn_number === '.' && currentNumber.length == 0 ) {
+    if (btn_number === '.' && currentNumber.length == 0) {
         currentNumber = '0.'
         // 「0.」不给直接传给input；把数字给placeholder
         document.querySelector('#display').placeholder = String(currentNumber);
-    }else if(btn_number==='.' && currentNumber==='-'){
-        currentNumber='-0.'
+    } else if (btn_number === '.' && currentNumber === '-') {
+        currentNumber = '-0.'
     }
 
     // 只能输入一个小数点；如果当前数字有「.」则屏蔽后面输入的「.」
@@ -159,7 +159,8 @@ function operational(btn_id) {
                 currentNumber = '';
             } else {
                 currentNumber = -1 * Number(currentNumber);
-                console.log('curr Type:' + currentNumber.typeof);
+                displayNumber = currentNumber;
+                console.log('curr Type:' + currentNumber);
             }
             console.log('pressed:' + btn_id);
             break;
