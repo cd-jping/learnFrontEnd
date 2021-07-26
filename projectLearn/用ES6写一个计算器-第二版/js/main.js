@@ -122,7 +122,7 @@ function pressNumber(btn_number) {
     if (currentNumber.charAt(currentNumber.length - 1) == '.') {
         document.querySelector('#display').placeholder = String(currentNumber);
         displayNumber = ''; //  让placeholder显示出来。
-    } else if(currentNumber=='-') {
+    } else if(currentNumber=='-') { 
         document.querySelector('#display').placeholder = String(currentNumber+0);
         displayNumber = ''; //  让placeholder显示出来。
     }else{
@@ -160,6 +160,7 @@ function operational(btn_id) {
             console.log('pressed:' + btn_id);
             break;
         case 'add':
+            
             console.log('pressed:' + btn_id);
             break;
         case 'subtract':
