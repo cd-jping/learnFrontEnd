@@ -16,7 +16,7 @@
     var event= event || window.event;  
     var getValue = $(this).val();  
     //控制第一个不能输入"0"  
-    if (getValue.length == 0 && event.which == 48) {  
+    if (getValue.length == 1 && event.which == 48) {  
            
         event.preventDefault();  
         return;  
