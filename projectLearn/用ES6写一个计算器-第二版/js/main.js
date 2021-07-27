@@ -47,10 +47,12 @@
 //设置键盘绑定监听事件
 const keyboardContainer = document.querySelector('.keyboard');
 const screen = document.querySelector('#display').value;
-let displayNumber = '', //显示值，接收 计算结果、按钮数字
+let previousNumber = '', //上一个值
     currentNumber = '', //当前值
-    previousNumber = '', //上一个值
-    sign = '';  //操作值（操作符号）
+    displayNumber = '', //显示值，接收 计算结果、按钮数字
+    preResult = '', //用来存储 遇到二级运算时 保存上一次结果
+    preSign = '', //记录变更运算级别之前的sign
+    sign = '';  //记录上次运算操作符号
 
 keyboardContainer.addEventListener('click', e => {
     // 捕获 Id、Class、TextContent的内容 来区分不同的button 执行相应的操作。
@@ -144,6 +146,9 @@ function pressNumber(btn_number) {
 
 // 操作按钮
 function operational(btn_id) {
+    if (currentNumber === '-') {
+        currentNumber = '';
+    }
     switch (btn_id) {
         case 'clean':
             console.log('pressed:' + btn_id);
@@ -173,132 +178,163 @@ function operational(btn_id) {
             break;
         case 'add':
             console.log('pressed:' + btn_id);
+
+            opr_Judgment(btn_id);
+
             break;
         case 'subtract':
             console.log('pressed:' + btn_id);
+            opr_Judgment(btn_id);
             break;
         case 'multiply':
             console.log('pressed:' + btn_id);
+            opr_Judgment(btn_id);
             break;
         case 'divide':
             console.log('pressed:' + btn_id);
+            opr_Judgment(btn_id);
             break;
         case 'equal':
+            calculator();
             console.log('pressed:' + btn_id);
             break;
     }
     updateDisplay();
 }
 
+// 1获取符号、2判断运算优先级
+function opr_Judgment(curr_sign) { //curr_sign 当前符号
 
+    if (previousNumber !== '' && currentNumber !== '') {
+        console.log('do calu!')
+        // 判断优先级
+        // 可以直接继续计算
+        // 保留上一值 优先运算2级
 
+        // 计算 （计算完 要清空 当前值
 
-function operate(id) {
+        // 从二级运算降到一级运算
+        if ((curr_sign === 'add' || curr_sign === 'subtract') && (sign === 'multiply' || sign === 'divide')) {
 
-    switch (id) {
+            console.log('2 to 1 !');
+        }
+        // 从一级运算升到二级运算
+        if ((curr_sign === 'multiply' || curr_sign === 'divide') && (sign === 'add' || sign === 'subtract')) {
+            // previousNumber
+            console.log('1 to 2 !');
 
-        case 'percent':
-            currentNumber = displayNumber;
-            currentNumber = currentNumber / 100;
-            displayNumber = currentNumber;
-            updateDisplay();
-            break;
-        case 'pos-and-neg':
+            // preSign 用来存储让次变化优先级前的符号
+            preSign = sign;
+        }
+        calculator();
 
-            if (currentNumber != '') {
-                currentNumber = -1 * Number(currentNumber);
-                displayNumber = currentNumber;
-            }
-            displayNumber = Number(currentNumber);
-            updateDisplay();
-            break;
-        case 'add':
-            // if (sign == 'add') {  //连续运算时候，如果上一次的符号与这次相同直接相加，否则跳过运算；只改变符号。
-            Continuous();
-            if (displayNumber != '') {
-                previousNumber = displayNumber;
-                currentNumber = '';
-            }
-            sign = 'add';
-            break;
-        case 'subtract':
-            Continuous();
-            if (displayNumber != '') {
-                previousNumber = displayNumber;
-                currentNumber = '';
-            }
-            sign = 'subtract';
-            break;
-        case 'multiply':
-            Continuous();
-            if (displayNumber != '') {
-                previousNumber = displayNumber;
-                currentNumber = '';
-            }
-            sign = 'multiply';
-
-            break;
-        case 'divide':
-            Continuous();
-            if (displayNumber != '') {
-                previousNumber = displayNumber;
-                currentNumber = '';
-            }
-            sign = 'divide';
-            break;
-        default:
-            break;
-
-    }
+    } else
+        if (currentNumber !== '') {
+            previousNumber = currentNumber;
+            currentNumber = '';
+            console.log('Yes!' + previousNumber)
+        }
+    sign = curr_sign; //把当前符号记录下来 下次计算
+    console.log('preResult: ' + preResult + ' preNumber: ' + previousNumber + ' currNumber: ' + currentNumber + ' display: ' + displayNumber + ' preSign: ' + preSign);
 }
 
-function calculator() {
-    let result = 0;
-    if (sign == '') {
-        result = currentNumber;
-    }
+function calculator(sign) {
     switch (sign) {
         case 'add':
-            if (currentNumber == '') {
-                currentNumber = Number(previousNumber);
-                result = Number(previousNumber) + Number(currentNumber);
-                previousNumber = result;
-            } else {
-                result = Number(previousNumber) + Number(currentNumber);
-                previousNumber = result;
-            }
+            result = Number(previousNumber) + Number(currentNumber);
+            previousNumber = result;
             break;
-        case 'subtract':
-            if (currentNumber === '') {
-                currentNumber = previousNumber;
-                console.log('zhixing wole ma???')
-                result = Number(previousNumber) - Number(currentNumber);
-            } else {
-                result = Number(previousNumber) - Number(currentNumber);
-                previousNumber = result;
-            }
-            break;
-        case 'multiply':
-            if (currentNumber == '') {
-                currentNumber = Number(previousNumber);
-                result = Number(previousNumber) * Number(currentNumber);
-                previousNumber = result;
-            } else {
-                result = Number(previousNumber) * Number(currentNumber);
-                //需要处理 精度问题 除法 需要处理0的结果
-                previousNumber = result;
-            }
-            break;
-        case 'divide':
-            if (currentNumber === '') {
-                currentNumber = previousNumber;
-                console.log('zhixing wole ma???')
-                result = Number(previousNumber) / Number(currentNumber);
-            } else {
-                result = Number(previousNumber) / Number(currentNumber);
-                previousNumber = result;
-            } break;
     }
-    displayNumber = result;
-    previousNumber = result;
+    displayNumber = previousNumber;
 }
+// // 1获取符号、2判断运算优先级
+// function opr_Judgment(btn_id) {
+
+//     if (currentNumber === '-') {
+//         currentNumber = '';
+//     }
+//     //从一级运算 遇到 二级运算
+//     if ((btn_id === 'mutiply' || btn_id === 'divide') && (preSign === 'add' || preSign === 'subtract')) {
+//         preResult = previousNumber;
+//         previousNumber = currentNumber;
+//         preSign = sign;
+//         //calculator(sign);// 计算得出  新的 previousNumber
+//         currentNumber = '';
+//         displayNumber = previousNumber;
+//         console.log('1 to 2 change-' + 'preResult: ' + preResult + ' preNumber: ' + previousNumber + ' currNumber: ' + currentNumber + ' display: ' + displayNumber + ' preSign: ' + preSign);
+
+//     } else if ((btn_id === 'add' || btn_id === 'subtract') && (preSign === 'mutiply' || preSign === 'divide')) {
+//         currentNumber = previousNumber;
+//         previousNumber = preResult;
+
+//         calculator(preSign);// 把之前的preResult算出来。重新变成新的 previousNumber
+//         preResult = '';
+//         displayNumber = previousNumber;
+//         console.log('2 to 1 change-' + 'preResult: ' + preResult + ' preNumber: ' + previousNumber + ' currNumber: ' + currentNumber + ' display: ' + displayNumber + ' preSign: ' + preSign);
+//     } else {//平级运算连续运算
+//         if (currentNumber !== '') calculator(sign);
+//         preSign = '';
+//         currentNumber = '';
+
+//         console.log('0 to 0 change-' + 'preResult: ' + preResult + ' preNumber: ' + previousNumber + ' currNumber: ' + currentNumber + ' display: ' + displayNumber + ' preSign: ' + preSign);
+//     }
+
+//         previousNumber = currentNumber;
+//         displayNumber = previousNumber;
+
+//     sign = btn_id;
+
+
+// }
+
+
+// function calculator() {
+//     let result = 0;
+//     if (sign == '') {
+//         result = currentNumber;
+//     }
+//     switch (sign) {
+//         case 'add':
+//             if (currentNumber == '') {
+//                 currentNumber = Number(previousNumber);
+//                 result = Number(previousNumber) + Number(currentNumber);
+//                 previousNumber = result;
+//             } else {
+//                 result = Number(previousNumber) + Number(currentNumber);
+//                 previousNumber = result;
+//             }
+//             break;
+//         case 'subtract':
+//             if (currentNumber === '') {
+//                 currentNumber = previousNumber;
+//                 console.log('zhixing wole ma???')
+//                 result = Number(previousNumber) - Number(currentNumber);
+//             } else {
+//                 result = Number(previousNumber) - Number(currentNumber);
+//                 previousNumber = result;
+//             }
+//             break;
+//         case 'multiply':
+//             if (currentNumber == '') {
+//                 currentNumber = Number(previousNumber);
+//                 result = Number(previousNumber) * Number(currentNumber);
+//                 previousNumber = result;
+//             } else {
+//                 result = Number(previousNumber) * Number(currentNumber);
+//                 //需要处理 精度问题 除法 需要处理0的结果
+//                 previousNumber = result;
+//             }
+//             break;
+//         case 'divide':
+//             if (currentNumber === '') {
+//                 currentNumber = previousNumber;
+//                 console.log('zhixing wole ma???')
+//                 result = Number(previousNumber) / Number(currentNumber);
+//             } else {
+//                 result = Number(previousNumber) / Number(currentNumber);
+//                 previousNumber = result;
+//             } break;
+//     }
+//     displayNumber = result;
+//     previousNumber = result;
+// }
