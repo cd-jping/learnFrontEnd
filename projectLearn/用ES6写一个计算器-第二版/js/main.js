@@ -82,6 +82,7 @@ function clean() {
     if (currentNumber != '') {
         displayNumber = '';
         currentNumber = ''
+        document.querySelector('#display').placeholder = '0';
         document.getElementById('clean').textContent = 'AC';
     } else {
         currentNumber = '';
