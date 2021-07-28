@@ -146,9 +146,9 @@ function pressNumber(btn_number) {
 
 // 操作按钮
 function operational(btn_id) {
-    if (currentNumber === '-') {
-        currentNumber = '';
-    }
+    // if (currentNumber === '-') {
+    //     currentNumber = '';
+    // }
     switch (btn_id) {
         case 'clean':
             console.log('pressed:' + btn_id);
@@ -217,24 +217,32 @@ function opr_Judgment(curr_sign) { //curr_sign 当前符号
         if ((curr_sign === 'add' || curr_sign === 'subtract') && (sign === 'multiply' || sign === 'divide')) {
 
             console.log('2 to 1 !');
+
+            //currentNumber = previousNumber;
+            // previousNumber = result;
+
+
         }
         // 从一级运算升到二级运算
         if ((curr_sign === 'multiply' || curr_sign === 'divide') && (sign === 'add' || sign === 'subtract')) {
             // previousNumber
             console.log('1 to 2 !');
 
+            preResult = previousNumber;
+            previousNumber = currentNumber;
+            currentNumber = '';
+
             // preSign 用来存储让次变化优先级前的符号
             preSign = sign;
         }
-        calculator();
+        calculator(sign);
 
-    } else
-        if (currentNumber !== '') {
-            previousNumber = currentNumber;
-            currentNumber = '';
-            console.log('Yes!' + previousNumber)
-        }
-    sign = curr_sign; //把当前符号记录下来 下次计算
+    } else if (currentNumber !== '') {
+        previousNumber = currentNumber;
+        currentNumber = '';
+        console.log('Yes!' + previousNumber)
+        sign = curr_sign; //把当前符号记录下来 下次计算
+    }
     console.log('preResult: ' + preResult + ' preNumber: ' + previousNumber + ' currNumber: ' + currentNumber + ' display: ' + displayNumber + ' preSign: ' + preSign);
 }
 
@@ -242,11 +250,13 @@ function calculator(sign) {
     switch (sign) {
         case 'add':
             result = Number(previousNumber) + Number(currentNumber);
-            previousNumber = result;
+            // previousNumber = result;
             break;
     }
-    displayNumber = previousNumber;
+    displayNumber = result;
 }
+
+
 // // 1获取符号、2判断运算优先级
 // function opr_Judgment(btn_id) {
 
