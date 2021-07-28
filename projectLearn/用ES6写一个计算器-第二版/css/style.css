@@ -49,7 +49,9 @@ body {
     font-family: system-ui;
 }
 
- 
+.calculator #display::placeholder{
+    color: white;
+}
 
 .keyboard {
     font-size: 1em;
