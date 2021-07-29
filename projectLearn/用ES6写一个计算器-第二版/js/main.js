@@ -227,6 +227,8 @@ function opr_Judgment(curr_sign) { //curr_sign 当前符号
             bak_sign = sign;
         }else {
             previousNumber = bak_previousNumber;
+            currentNumber = bak_preResult;
+            bak_preResult = '';
         }
     }
     else
@@ -234,14 +236,17 @@ function opr_Judgment(curr_sign) { //curr_sign 当前符号
         if ((curr_sign === 'add' || curr_sign === 'subtract') && (sign === 'multiply' || sign === 'divide')) {
             // 1+2+ 3 * 4*5 +
             console.log('2 to 1 !');
-            calculator(sign); //60
-            bak_previousNumber = previousNumber;
-            currentNumber = previousNumber;
-            previousNumber = bak_preResult;
+            if(bak_preResult !==''){
+                calculator(sign); //60
+                bak_previousNumber = previousNumber;
+                currentNumber = previousNumber;
+                previousNumber = bak_preResult;
+    
+                // bak_preResult = '';
+                // previousNumber = bak_preResult;
+                sign = bak_sign;
 
-            // bak_preResult = '';
-            // previousNumber = bak_preResult;
-            sign = bak_sign;
+            }
             
         }
     if (previousNumber !== '' && currentNumber !== '') {
