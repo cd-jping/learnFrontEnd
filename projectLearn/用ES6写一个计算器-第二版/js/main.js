@@ -38,7 +38,7 @@ function updateDisplay() {
 
 // 清除功能，第一次按 仅清除了当前数 ；第二次按 清除所有数字
 function clean() {
-    if (currentNumber != '') {
+    if (displayNumber != '') {
         displayNumber = '';
         currentNumber = ''
         document.querySelector('#display').placeholder = '0';
