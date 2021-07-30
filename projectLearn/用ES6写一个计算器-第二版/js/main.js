@@ -1,4 +1,4 @@
-  
+
 //设置键盘绑定监听事件
 const keyboardContainer = document.querySelector('.keyboard');
 const screen = document.querySelector('#display').value;
@@ -8,8 +8,10 @@ let previousNumber = '', //上一个值
     bak_preResult = '', // 备份值结果，用来在 各种符号之间切换需要调去原来的计算值
     bak_sign = '', // 备份符号
     bak_currentNumber = '', //备份当前数字；
-    bak_previousNumber = '';
-    sign = '';  //记录上次运算操作符号
+    bak_previousNumber = '',
+    do_calculator = true;
+    
+sign = '';  //记录上次运算操作符号
 
 keyboardContainer.addEventListener('click', e => {
     // 捕获 Id、Class、TextContent的内容 来区分不同的button 执行相应的操作。
@@ -151,7 +153,8 @@ function operational(btn_id) {
             opr_Judgment(btn_id);
             break;
         case 'equal':
-            calculator();
+            opr_Judgment(btn_id);
+            previousNumber = '';
             console.log('pressed:' + btn_id);
             break;
     }
@@ -164,61 +167,99 @@ function opr_Judgment(curr_sign) { //curr_sign 当前符号
     // 可以直接继续计算
     // 保留上一值 优先运算2级
 
-    // 计算 （计算完 要清空 当前值
+    // 计算 （计算完 要清空 当前值 
 
-    // eg：1+2/ 
-    //   3+    60 * curr='';
-    // 1+2+ 3 * 4*5 *
+    // 1+2 * 3 
     // 从一级运算升到二级运算
+    console.log('start')
     if ((curr_sign === 'multiply' || curr_sign === 'divide') && (sign === 'add' || sign === 'subtract')) {
         // previousNumber
         console.log('1 to 2 !');
-        if(currentNumber!==''){
-            bak_preResult = previousNumber;
-            bak_currentNumber = currentNumber;
-            previousNumber = currentNumber;
-            // currentNumber = '';
+
+        if (currentNumber !== '') { // 第一次处理 最开始的时候没有 结果或者第一次需要把结果存起来
+
+            bak_preResult = previousNumber;  //上一个值=上次计算结果 保存
+            bak_currentNumber = currentNumber; //当前值 备份
+            previousNumber = currentNumber;  //当前值 变成 上一个值
+            currentNumber = '';   //当前值 清空
             // bak_sign 用来存储让次变化优先级前的符号
-            bak_sign = sign;
-        }else {
-            previousNumber = bak_previousNumber;
-            currentNumber = bak_preResult;
-            bak_preResult = '';
+            bak_sign = sign; //符号保存起来
         }
+        if (currentNumber === '' && bak_previousNumber !== '') {
+            currentNumber = bak_previousNumber;
+            console.log('reload:bak-prev:'+bak_previousNumber);
+
+            previousNumber = bak_preResult;
+            do_calculator = false;
+        }
+        // displayNumber = previousNumber;
+        // previousNumber = bak_previousNumber;
+        // currentNumber = bak_preResult;
+        // bak_preResult = '';
+
     }
     else
         // 从二级运算降到一级运算
-        if ((curr_sign === 'add' || curr_sign === 'subtract') && (sign === 'multiply' || sign === 'divide')) {
-            // 1+2+ 3 * 4*5 +
+        if ((curr_sign === 'add' || curr_sign === 'subtract' || curr_sign === 'equal') && (sign === 'multiply' || sign === 'divide')) {
+            // 1+2 - 3  
             console.log('2 to 1 !');
-            if(bak_preResult !==''){
-                calculator(sign); //60
-                bak_previousNumber = previousNumber;
-                currentNumber = previousNumber;
-                previousNumber = bak_preResult;
-    
-                // bak_preResult = '';
-                // previousNumber = bak_preResult;
-                sign = bak_sign;
+            if (currentNumber !== '') { //第一次处理 之前二级元算还没结束要把值先算出来 保存
+                console.log('curr != kong');
+                if (bak_previousNumber === '') { //备份的当前值为空 则是第一次情况
+                    console.log('bak-prev == kong');
+                    calculator(sign); // 把当前二级运算 算完
 
+                    bak_previousNumber = previousNumber; //把结果 cunqilai 
+                    currentNumber = previousNumber; //把结果 传给 当前值
+                    previousNumber = bak_preResult; //把保存的结果  传给 上一个值
+                    // bak_preResult = '';
+                } else {
+                    console.log('else ');
+                    currentNumber = bak_currentNumber;
+                    bak_currentNumber = '';
+                    previousNumber = bak_preResult;
+                }
+                
+
+            } else { //当前值为 ‘’空 说明上次执行过 运算级转换 /或为 不构成运算条件
+                console.log(' 2 > 1 Else')
+                bak_previousNumber = previousNumber; //上一个值（也就是刚才保存的3） 保存
+                currentNumber = previousNumber;   //上一值 其实是 当前值 3
+                previousNumber = bak_preResult; //保存的结果值 重新调出来 3
             }
-            
+
+
+
+            // bak_preResult = '';
+            // previousNumber = bak_preResult;
+            sign = bak_sign;    //把保存的符号 给 sign
+
+
+
         }
     if (previousNumber !== '' && currentNumber !== '') {
-        console.log('do calu!')
-
-        calculator(sign);
-        currentNumber = '';
-    } else {
-        if (currentNumber !== '') {
-            previousNumber = currentNumber;
+        if (do_calculator == false) {
+            do_calculator = true;
+            console.log('no-calc!')
+        } else {
+            console.log('do-calu!')
+            calculator(sign);
+            bak_preResult = previousNumber;
+            bak_currentNumber = currentNumber;
+            // bak_currentNumber = '';
             currentNumber = '';
-            console.log('Yes!' + previousNumber)
+
         }
-        
+    }
+
+    if (currentNumber !== '') {
+        previousNumber = currentNumber;
+        currentNumber = '';
+        console.log('Yes!' + previousNumber)
     }
     sign = curr_sign; //把当前符号记录下来 下次计算
-    console.log('preResult: ' + bak_preResult + ' preNumber: ' + previousNumber + ' currNumber: ' + currentNumber + ' display: ' + displayNumber + ' preSign: ' + bak_sign);
+    displayNumber = previousNumber;
+    console.log('bak-preResult: ' + bak_preResult + ' bak-curr: ' + bak_currentNumber + ' bak-prev: ' + bak_previousNumber + ' prev: ' + previousNumber + ' curr: ' + currentNumber + ' display: ' + displayNumber + ' bak-sign: ' + bak_sign);
 }
 
 function calculator(sign) {
@@ -226,8 +267,17 @@ function calculator(sign) {
         case 'add':
             previousNumber = Number(previousNumber) + Number(currentNumber);
             break;
+        case 'subtract':
+            previousNumber = Number(previousNumber) - Number(currentNumber);
+            break;
+        case 'multiply':
+            previousNumber = Number(previousNumber) * Number(currentNumber);
+            break;
+        case 'divide':
+            previousNumber = Number(previousNumber) / Number(currentNumber);
+            break;
     }
-    
+
 
 }
 
