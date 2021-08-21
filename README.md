@@ -8,7 +8,7 @@ How2j  <https://how2j.cn?p=179231>
 MDN    <https://developer.mozilla.org/zh-CN/docs/Learn/Getting_started_with_the_web/JavaScript_basics>
 
 ## 学习体会
-
+TEST
 - 21-01-15
 第一次开始写学习体会，前面学习了HTML、CSS，现在开始学习JS，有一点感觉就是 还是看MDN的文档比较好。看了Jquery 总想试试，但是很多写法不理解，还得补习ES6.
 
